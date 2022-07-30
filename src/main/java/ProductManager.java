@@ -2,8 +2,8 @@ import java.util.Scanner;
 
 public class ProductManager {
     protected int id;
-    protected String name;
-    protected int price;
+     protected String name;
+     protected int price;
 
     public int getId() {
         return id;

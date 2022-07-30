@@ -4,4 +4,11 @@ public class Smartphone extends Product{
         super(id, name, price);
         this.producer = producer;
     }
+    public void setProducer(String producer) {
+        this.producer = producer;
+    }
+
+    public String getProducer() {
+        return producer;
+    }
 }

@@ -1,5 +1,5 @@
 public class ProductRepository {
-    private Product[] items = new Product[0];
+    private static Product[] items = new Product[0];
 
     public void save(Product item) {
         Product[] tmp = new Product[items.length + 1];
@@ -21,7 +21,7 @@ public class ProductRepository {
         }
         items = tmp;
     }
-    public Product[] getItems() {
+    public static Product[] getItems() {
         return items;
     }
 }
