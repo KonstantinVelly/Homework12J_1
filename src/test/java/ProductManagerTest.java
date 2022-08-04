@@ -8,22 +8,34 @@ public class ProductManagerTest {
     ProductRepository repo = new ProductRepository();
     ProductManager manager = new ProductManager(repo);
 
-    Product item1 = new Product(1, "book1", 25);
-    Product item2 = new Product(2, "smartphone1", 150);
+    Product book1 = new Book(1, "CryI", 25, "Ivanov" );
+    Product smartphone1 = new Smartphone(22, "smartphone1", 1500, "Samsung");
+    Product book2 = new Book(3, "CryII", 50, "Vodolazkin");
+    Product book3 = new Book(4, "Shining", 120, "Pushkin");
 
-    Product item3 = new Product(3, "book2", 50);
+   @Test
+  public void findItemByName() {
+        repo.save(book1);
+        repo.save(book2);
+        repo.save(book3);
+        repo.save(smartphone1);
+        //Ищем несколько продуктов
+        Product[] expected = {book1, book2};
+        Product[] actual = manager.searchBy("Cry");
 
-  //  @Test
-    //public void findItemByName() {
-      //  Product[] items = { item1, item2, item3 };
-        //manager.matches().when(repo).getItems();
-        //repo.save(item1);
-        //repo.save(item2);
-        //repo.save(item3);
+        Assertions.assertArrayEquals(expected, actual);
 
-        //Product[] expected = {item1};
-        //Product[] actual = manager.searchBy("book1");
+       //Ищем один продукт
+       Product[] expected1 = {smartphone1};
+       Product[] actual1 = manager.searchBy("smartphone1");
 
-        //Assertions.assertArrayEquals(expected, actual);
-    //}
+       Assertions.assertArrayEquals(expected1, actual1);
+
+       //Продукта в списке нет
+       Product[] expected2 = {};
+       Product[] actual2 = manager.searchBy("Harry Potter");
+
+       Assertions.assertArrayEquals(expected2, actual2);
+
+      }
 }
